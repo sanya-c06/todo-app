@@ -1,0 +1,252 @@
+/* =====================================================================
+   GLOBAL & LAYOUT
+   ===================================================================== */
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f2f5; /* Light, modern background */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+}
+
+.container {
+    max-width: 600px;
+    width: 90%; /* Responsive width */
+    margin: 30px auto;
+    padding: 25px 30px;
+    background: #ffffff; /* White card background */
+    border-radius: 12px; /* Smoother corners */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Deeper shadow for depth */
+}
+
+/* For Login/Register pages, center the card vertically and horizontally */
+body:has(.login-page), body:has(.register-page) {
+    justify-content: center;
+    align-items: center;
+}
+.login-page h2, .register-page h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #1a73e8; /* Blue accent for headings */
+}
+
+/* =====================================================================
+   HEADER & NAVIGATION
+   ===================================================================== */
+.header {
+    background-color: #1a73e8; /* Deep blue header */
+    color: white;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.header h1 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.logout-btn {
+    color: white;
+    text-decoration: none;
+    background-color: #d93025; /* Red for alert/exit actions */
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.logout-btn:hover {
+    background-color: #a50e05;
+}
+
+/* =====================================================================
+   FORMS & INPUTS
+   ===================================================================== */
+#addTaskForm, form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    align-items: stretch; /* Align items vertically */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #555;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 12px;
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+    outline: none;
+}
+
+button[type="submit"], .delete-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.1s;
+    white-space: nowrap; /* Prevent button text wrap */
+}
+
+button[type="submit"] {
+    background-color: #34a853; /* Google Green */
+    color: white;
+    flex-shrink: 0;
+}
+
+button[type="submit"]:hover {
+    background-color: #2c8e47;
+}
+
+/* --- Login/Register Specific Forms --- */
+.login-page form, .register-page form {
+    flex-direction: column;
+    gap: 0;
+}
+.login-page input, .register-page input {
+    width: 100%;
+}
+.login-page button, .register-page button {
+    margin-top: 15px;
+}
+
+/* =====================================================================
+   MESSAGES & LINKS
+   ===================================================================== */
+.error, .success {
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.error {
+    color: #a50e05;
+    background-color: #fce8e6;
+    border: 1px solid #f9bdbb;
+}
+
+.success {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+p a {
+    color: #1a73e8;
+    text-decoration: none;
+    font-weight: 500;
+}
+p a:hover {
+    text-decoration: underline;
+}
+
+
+/* =====================================================================
+   TASK LIST
+   ===================================================================== */
+hr {
+    border: 0;
+    height: 1px;
+    background: #e0e0e0;
+    margin: 20px 0;
+}
+
+#taskList {
+    list-style: none;
+    padding: 0;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0; /* Lighter separator */
+    transition: background-color 0.2s;
+}
+
+.task-item:hover {
+    background-color: #f9f9f9;
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
+
+.task-complete-toggle {
+    width: 20px;
+    height: 20px;
+    min-width: 20px; /* Ensure checkbox doesn't shrink */
+    margin-right: 15px;
+    cursor: pointer;
+    accent-color: #34a853; /* Change checkbox color */
+}
+
+.task-text {
+    flex-grow: 1;
+    padding: 0 10px;
+    font-size: 1.1rem;
+    cursor: pointer; /* Hint for double-click edit */
+}
+
+/* --- Completed Task Style --- */
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: #999;
+}
+
+/* --- Edit Input Style --- */
+.edit-task-input {
+    padding: 8px;
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    margin-right: 10px;
+}
+
+/* --- Delete Button Style --- */
+.delete-btn {
+    background-color: #dc3545; /* Bootstrap Red */
+    color: white;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    flex-shrink: 0;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.empty-list {
+    text-align: center;
+    color: #888;
+    padding: 20px;
+    font-style: italic;
+    font-size: 1rem;
+}
